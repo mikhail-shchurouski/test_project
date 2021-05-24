@@ -22,7 +22,7 @@ class Manufacturer(models.Model):
         вернуть строку вида f'{self.name} | {self.country}'
         в противном случае вернуть только self.name
         """
-        return f'{self.pk} | {self.name} | {self.country}'
+        return f'{self.pk} | {self.name} | {self.country}' if self.country else self.name
 
     @classmethod
     def get_default_pk(cls):

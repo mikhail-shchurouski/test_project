@@ -13,16 +13,16 @@ class Manufacturer(models.Model):
     class Meta:
         verbose_name = _("manufacturer")
         verbose_name_plural = _("manufacturers")
-        ordering = ['name']
+        ordering = ['pk']
 
     def __str__(self):
         """
         Возвращает строковое представление.
         :return: если у производителя есть страна то
-        вернуть строку вида f'{self.name} | {self.country}'
-        в противном случае вернуть только self.name
+        вернуть строку вида f'{self.pk} | {self.name} | {self.country}'
+        в противном случае вернуть только f'{self.pk} | {self.name}'
         """
-        return f'{self.pk} | {self.name} | {self.country}' if self.country else self.name
+        return f'{self.pk} | {self.name} | {self.country}' if self.country else f'{self.pk} | {self.name}'
 
     @classmethod
     def get_default_pk(cls):

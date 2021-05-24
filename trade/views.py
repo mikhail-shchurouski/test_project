@@ -7,6 +7,7 @@ from .forms import SearchForm
 
 
 def get_id(request):
+    # функция-контроллер для поиска id производителя товаров по id контракта и заявки
     try:
         if request.method == 'POST':
             form = SearchForm(request.POST)
@@ -14,7 +15,7 @@ def get_id(request):
                 contract_id = form.cleaned_data['contract_id']
                 if contract_id > 0:
                     request_id = CreditRequests.objects.filter(contract=contract_id)
-                    products = request_id[0].req.all()
+                    products = request_id[0].req.all()        # используем related_name (req) для обратной связи
                     messages.success(request, 'Успешно!')
                     return render(request, 'trade/search.html', {'credit_request': request_id[0],
                                                                  'products': list(products)})

@@ -23,8 +23,6 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th scope="col">Product id</th>
-                <th scope="col">Название товара</th>
                 <th scope="col">Производитель</th>
                 <th scope="col">ID производителя</th>
             </tr>
@@ -32,12 +30,18 @@
             <tbody>
             {% for item_product in products %}
                 <tr>
-                    <th scope="row">{{ item_product.pk }}</th>
-                    <td>{{ item_product.name }}</td>
                     <td>{{ item_product.manufacturer.name }}</td>
                     <td style="color: crimson"><h5>{{ item_product.manufacturer.pk }}</h5></td>
                 </tr>
+
             {% endfor %}
+
+            <tr>
+                <th style="color: crimson"><h4>Уникальные ID производителей в данной
+                    заявке: {{ unique_manufacturer_id }}</h4></th>
+            </tr>
+
+
             </tbody>
         </table>
 

@@ -37,7 +37,7 @@ class Product(models.Model):
     """
     name = models.CharField(max_length=255)         # наименование продукта
     description = models.TextField()
-    manufacturer = models.OneToOneField(            # связь один к одному
+    manufacturer = models.ForeignKey(               # связь многие к одному
         Manufacturer,                               # ссылка на производителя
         on_delete=models.SET_DEFAULT,               # при удалении подставляется значение по умолчанию
         default=Manufacturer.get_default_pk         # значение по умолчанию

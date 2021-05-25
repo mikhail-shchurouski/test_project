@@ -16,10 +16,10 @@ def get_id(request):
                 if contract_id > 0:
                     request_id = CreditRequests.objects.filter(contract=contract_id)
                     products = request_id[0].req.all()        # используем related_name (req) для обратной связи
-                    prod_dict_id = []
+                    prod_id = []
                     for item_products in products:
-                        prod_dict_id.append(item_products.manufacturer.pk)
-                    unique_manufacturer_id = set(prod_dict_id)
+                        prod_id.append(item_products.manufacturer.pk)
+                    unique_manufacturer_id = set(prod_id)
                     messages.success(request, 'Успешно!')
                     return render(request, 'trade/search.html', {'credit_request': request_id[0],
                                                                  'products': list(products),

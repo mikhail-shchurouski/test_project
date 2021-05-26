@@ -31,14 +31,20 @@
             {% for item_product in products %}
                 <tr>
                     <td>{{ item_product.manufacturer.name }}</td>
-                    <td style="color: crimson"><h5>{{ item_product.manufacturer.pk }}</h5></td>
+                    <td>{{ item_product.manufacturer.pk }}</td>
                 </tr>
 
             {% endfor %}
 
             <tr>
-                <th style="color: crimson"><h4>Уникальные ID производителей в данной
-                    заявке: {{ unique_manufacturer_id }}</h4></th>
+                <th style="color: crimson">Уникальные ID производителей в данной
+                    заявке:
+                </th>
+                <th style="color: crimson">
+                {% for item_product in products %}
+                    | {{ item_product.manufacturer.pk }}
+                {% endfor %} |
+                </th>
             </tr>
 
 

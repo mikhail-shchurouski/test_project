@@ -15,15 +15,10 @@ def get_id(request):
                 contract_id = form.cleaned_data['contract_id']
                 if contract_id > 0:
                     request_id = CreditRequests.objects.filter(contract=contract_id)
-                    products = request_id[0].req.all()        # используем related_name (req) для обратной связи
-                    prod_id = []
-                    for item_products in products:
-                        prod_id.append(item_products.manufacturer.pk)
-                    unique_manufacturer_id = set(prod_id)
+                    products = request_id[0].req.order_by('manufacturer_id').distinct('manufacturer_id')        # используем related_name (req) для обратной связи
                     messages.success(request, 'Успешно!')
                     return render(request, 'trade/search.html', {'credit_request': request_id[0],
-                                                                 'products': list(products),
-                                                                 'unique_manufacturer_id': unique_manufacturer_id
+                                                                 'products': list(products)
                                                                  })
                 else:
                     messages.error(request, 'Ошибка валидации!')

@@ -41,9 +41,9 @@
                     заявке:
                 </th>
                 <th style="color: crimson">
-                {% for item_product in products %}
-                    | {{ item_product.manufacturer.pk }}
-                {% endfor %} |
+                    {% for item_product in products %}
+                        | {{ item_product.manufacturer.pk }}
+                    {% endfor %} |
                 </th>
             </tr>
 
